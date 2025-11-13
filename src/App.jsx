@@ -1,26 +1,45 @@
 import { useState } from 'react'
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import Features from './components/Features'
+import Pricing from './components/Pricing'
+import Blog from './components/Blog'
+import Contact from './components/Contact'
+import AuthDialog from './components/AuthDialog'
 
-function App() {
-  const [count, setCount] = useState(0)
+const primary = '#B82124'
 
+function Footer(){
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
+    <footer className="py-10 bg-white border-t border-black/5">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-2">
+            <div className="h-6 w-6 rounded-md" style={{ background: primary }}></div>
+            <span className="text-sm text-gray-600">© {new Date().getFullYear()} RedPulse</span>
+          </div>
+          <div className="text-sm text-gray-500">Built with love and speed.</div>
         </div>
       </div>
+    </footer>
+  )
+}
+
+function App() {
+  const [authOpen, setAuthOpen] = useState(false)
+
+  return (
+    <div className="min-h-screen bg-white text-gray-900">
+      <Navbar onOpenAuth={() => setAuthOpen(true)} />
+      <main className="pt-16">
+        <Hero />
+        <Features />
+        <Pricing />
+        <Blog />
+        <Contact />
+      </main>
+      <Footer />
+      <AuthDialog open={authOpen} onClose={() => setAuthOpen(false)} />
     </div>
   )
 }
